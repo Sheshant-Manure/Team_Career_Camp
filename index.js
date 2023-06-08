@@ -2,6 +2,10 @@
 const express = require('express');
 const app = express();
 
+// Setting up the EJS view engine 
+app.set('view engine', 'ejs');
+app.set('views', './Views'); // The http requests will be routed to the 'Views' directory wherein all the pages and subpages are stored
+
 // Setting Routes folder for routing all the urls requested by the client (browser)
 app.use('/', require('./Routes/index'));
 
