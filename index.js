@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 
+// Setting 'Assets' folder as directory for static files (CSS, JS and Images)
+app.use(express.static('./Assets'));
+
 // Setting up the EJS view engine 
 app.set('view engine', 'ejs');
 app.set('views', './Views'); // The http requests will be routed to the 'Views' directory wherein all the pages and subpages are stored
