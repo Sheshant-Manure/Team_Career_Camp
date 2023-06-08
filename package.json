@@ -1,0 +1,11 @@
+{
+  "name": "team_career_camp",
+  "version": "1.0.0",
+  "description": "A web application for Team Career Camp for managing student's web development career, interviews, etc. It is basically a web UI for entering student data via forms and generating/downloading reports (CSV format).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sheshant Manure",
+  "license": "ISC"
+}
