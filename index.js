@@ -1,7 +1,14 @@
 // Importing the required modules, libraries and frameworks
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
 const app = express();
+
+// Using Mongoose ODM to connect with MongoDB 
+main().catch(err => console.log(err));
+    async function main() {
+      await mongoose.connect('mongodb+srv://msheshant1997:Sheshant123@cluster0.knr5rcl.mongodb.net/?retryWrites=true&w=majority');
+}
 
 // Setting 'Assets' folder as directory for static files (CSS, JS and Images)
 app.use(express.static('./Assets'));
