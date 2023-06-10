@@ -1,0 +1,12 @@
+h2#error {
+    text-align: center;
+    color: red;
+}
+
+p#message {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}

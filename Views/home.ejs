@@ -2,29 +2,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>Create New Account</h2>
-            <form action="">    
-                <div class="row">
-                    <div class="col">
-                        <input type="text" name="emp_name" class="form-control" placeholder="Employee Name">    
-                    </div>
-                    <div class="col">
-                        <input type="text" name="emp_id" class="form-control" placeholder="Employee ID">    
-                    </div>
-                </div><br>
-                <input type="email" name="email" class="form-control" placeholder="Enter email"><br>
-                <input type="password" name="password" class="form-control" placeholder="Password"><br>
-                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password"><br>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
+            <h2>Create New Account | Sign Up</h2>
+            <%- include('Partials/signup') %>
         </div>
         <div class="col">
-            <h2>Existing Employee</h2>
-            <form action="" method="post">
-                <input type="email" name="email" class="form-control" placeholder="Enter email"><br>
-                <input type="password" name="password" class="form-control" placeholder="Password"><br>
-                <button type="submit" class="btn btn-primary">Sign In</button>
-            </form>
+            <h2>Existing Employee | Sign In</h2>
+            <%- include('Partials/signin')  %>
         </div>
     </div>
 </div>
