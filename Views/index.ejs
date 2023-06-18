@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/CSS/index.css">
+<h2 id="emp_info"><%= emp_name %> (Emp ID: <%= emp_id %>) | <a href="/employees/sign-out">Sign Out</a></h2>
+
+<div class="container">
+    <form action="/students/form" method="post">
+        <label><b>Batch #</b></label><br>
+        <input type="text" name="batch" id="batch" placeholder="Enter the student batch"><br>
+        <label><b>Student Details</b></label><br>
+        <input type="text" name="student_name" id="student_name" placeholder="Student Name"><br>
+        <input type="text" name="college" id="college" placeholder="College/Institute Name"><br>
+        <label for="placement_status"><b>Placement Status</b></label><br>
+        <select name="placement_status" id="placement_status">
+            <option value="Placed">Placed</option>
+            <option value="Not Placed">Not Placed</option>
+        </select>
+        <input type="text" name="company" id="company" placeholder="Company Name (if placed)" size="25" >
+    </form>    
+</div>

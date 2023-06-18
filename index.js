@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');  // This is used for url encoding the post request made via signup form
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const app = express();
 
 // Using Mongoose ODM to connect with MongoDB 
@@ -28,6 +29,13 @@ app.set('layout extractScripts', true);
 // Using express ejs layouts library
 // This must be executed before the routes so that before rendering pages from the views, a layout is predefined for all of them
 app.use(expressLayouts);
+
+// Using express session middllware for local authentication
+app.use(session({
+    secret:'team-career-camp',
+    resave: false,
+    saveUninitialized:false
+}))
 
 // Setting Routes folder for routing all the urls requested by the client (browser)
 app.use('/', require('./Routes/index'));
