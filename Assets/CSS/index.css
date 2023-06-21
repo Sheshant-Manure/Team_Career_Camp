@@ -1,8 +1,18 @@
-#emp_info {
-    text-align: right;
-    margin-right: 30px;
+input {
+    margin: 5px;
 }
 
-#emp_info a {
-    text-decoration: none;
+.submit {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td, th {
+  text-align: center;
+}
+
+form {
+  text-align: center;
 }

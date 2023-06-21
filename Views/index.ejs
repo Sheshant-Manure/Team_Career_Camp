@@ -1,18 +1,152 @@
+<!-- Style Sheet -->
 <link rel="stylesheet" href="/CSS/index.css">
-<h2 id="emp_info"><%= emp_name %> (Emp ID: <%= emp_id %>) | <a href="/employees/sign-out">Sign Out</a></h2>
 
+<!-- Navigation bar to show Employee Name and Sign Out button -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <b class="navbar-brand"><%= emp_name %> (Emp ID: <%= emp_id %>)</b>
+        <a class="navbar-brand" href="/employees/sign-out">Sign Out</a>
+    </div>
+  </nav>
+<br>
 <div class="container">
-    <form action="/students/form" method="post">
-        <label><b>Batch #</b></label><br>
-        <input type="text" name="batch" id="batch" placeholder="Enter the student batch"><br>
-        <label><b>Student Details</b></label><br>
-        <input type="text" name="student_name" id="student_name" placeholder="Student Name"><br>
-        <input type="text" name="college" id="college" placeholder="College/Institute Name"><br>
-        <label for="placement_status"><b>Placement Status</b></label><br>
-        <select name="placement_status" id="placement_status">
-            <option value="Placed">Placed</option>
-            <option value="Not Placed">Not Placed</option>
-        </select>
-        <input type="text" name="company" id="company" placeholder="Company Name (if placed)" size="25" >
-    </form>    
+    <div class="row">
+        <div class="col">
+            <!-- Form to add new student -->
+            <h2>Student Form</h2>
+            <form action="/students/form" method="post">              
+                <label><b>Batch #</b></label><br>
+                <input type="text" name="batch" id="batch" placeholder="Enter the student batch"><br>
+                
+                <label><b>Student Details</b></label><br>
+                <input type="number" name="student_id" id="student_id" placeholder="Student ID"><br>
+                <input type="text" name="student_name" id="student_name" placeholder="Student Name"><br>
+                <input type="text" name="college" id="college" placeholder="College/Institute Name"><br>
+                <input type="text" name="yop" id="yop" placeholder="Year of Passing"><br>
+                
+                <label><b>Course Score</b></label><br>
+                <input type="number" name="score" id="dsa" placeholder="DSA Final Score"><br>
+                <input type="number" name="score" id="frontend" placeholder="Front End Final Score"><br>
+                <input type="number" name="score" id="backend" placeholder="Back End Final Score"><br>
+                <input type="number" name="score" id="nodejs" placeholder="Node JS Final Score"><br>
+                <input type="number" name="score" id="reactjs" placeholder="React JS Final Score"><br>
+
+                <div class="submit">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <!-- Form to update interview details of a student -->
+            <h2>Student Interview</h2>
+            <form action="/students/interview" method="post">
+                <label><b>Interview Details</b></label><br>
+                <input type="text" name="batch" id="batch" placeholder="Batch #"><br>
+                <input type="number" name="student_id" id="student_id" placeholder="Student ID"><br>
+                <input type="text" name="company" id="company" placeholder="Company Name"><br>
+                <label for="interview_date">Date of Interview</label>
+                <input type="date" name="interview_date" id="interview_date"><br>
+                <label for="result">Interview Result</label>
+                <select name="result" id="result">
+                    <option value="pass">Pass</option>
+                    <option value="failed">Failed</option>
+                    <option value="on-hold">On Hold</option>
+                    <option value="not-attempted">Not Attempted</option>
+                </select><br>
+                
+                <label for="placement_status"><b>Placement Status</b></label><br>
+                <select name="placement_status" id="placement_status">
+                    <option value="Placed">Placed</option>
+                    <option value="Not Placed">Not Placed</option>
+                </select><br>
+                <div class="submit">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <h2>Students List</h2>
+            <thead>
+              <tr>
+                <th scope="col">Batch #</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">College</th>
+                <th scope="col">YOP</th>
+                <th scope="col">DSA</th>
+                <th scope="col">Frontend</th>
+                <th scope="col">Backend</th>
+                <th scope="col">Node</th>
+                <th scope="col">React</th>
+                <th scope="col">Total</th>
+                <th scope="col">Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+                <div id="studentTable">
+                    <% students.forEach(function(student) { %>
+                        <tr>
+                        <td><%- student.batch %></td>
+                        <td><%- student.stu_id %></td>
+                        <td><%- student.stu_name %></td>
+                        <td><%- student.college %></td>
+                        <td><%- student.yop %></td>
+                        <td><%- student.score[0] %></td>
+                        <td><%- student.score[1] %></td>
+                        <td><%- student.score[2] %></td>
+                        <td><%- student.score[3] %></td>
+                        <td><%- student.score[4] %></td>
+                        <td><%- parseInt(student.score[0]) + parseInt(student.score[1]) + parseInt(student.score[2]) + parseInt(student.score[3]) + parseInt(student.score[4]) %></td>
+                        <td><%- (parseInt(student.score[0]) + parseInt(student.score[1]) + parseInt(student.score[2]) + parseInt(student.score[3]) + parseInt(student.score[4]))/5 %></td> 
+                    </tr>
+                    <% }); %>
+                </div>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col">
+                <a href="/students/download-students-list"><button type="button" class="btn btn-success">Download</button></a>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <h2>List of Interviews</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Batch #</th>
+                <th scope="col">ID</th>
+                <th scope="col">Company</th>
+                <th scope="col">Interview Date</th>
+                <th scope="col">Result</th>
+                <th scope="col">Placement Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% interviews.forEach(function(interview){ %>
+                    <tr>
+                        <td><%- interview.batch %></td>
+                        <td><%- interview.stu_id %></td>
+                        <td><%- interview.company %></td>
+                        <td><%- interview.interview_date %></td>
+                        <td><%- interview.result %></td>
+                        <td><%- interview.placement_status %></td>
+                    </tr>
+                <% }); %>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col">
+                <a href="/students/download-interviews"><button type="button" class="btn btn-success">Download</button></a>
+            </div>
+          </div>
+    </div>
 </div>
+<br>
+<br>
+<br>

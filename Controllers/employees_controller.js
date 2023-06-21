@@ -1,4 +1,6 @@
-const Employee = require('../Models/employee_accounts')
+const Employee = require('../Models/employee_accounts');
+const Student = require('../Models/students');
+const Interview = require('../Models/interview');
 // Format: module.exports.actionName = function() { body/definition }
 
 module.exports.createAccount = (req, res)=> {
@@ -25,7 +27,8 @@ module.exports.createAccount = (req, res)=> {
     })
 
 }
-let employee;
+let employee, students, interviews;
+
 module.exports.signIn = async (req, res) => {
     employee = await Employee.findOne({ email: req.body.email }).exec();
     
@@ -37,11 +40,18 @@ module.exports.signIn = async (req, res) => {
           emp_name: employee.emp_name,
           emp_id: employee.emp_id
         };
-  
+        
+        // Getting Students List
+        students = await Student.find({});
+        // Getting List of Interviews
+        interviews = await Interview.find({});
+
         return res.render('index', {
           title: 'Team Career Camp | Home',
           emp_name: employee.emp_name,
-          emp_id: employee.emp_id
+          emp_id: employee.emp_id,
+          students: students,
+          interviews: interviews
         });
       } 
       
@@ -64,8 +74,10 @@ module.exports.signInGetRequest = async (req, res) => {
     return res.render('index', {
       title: 'Team Career Camp | Home',
       emp_name: employee.emp_name,
-      emp_id: employee.emp_id
-    });    
+      emp_id: employee.emp_id,
+      students: students,
+      interviews: interviews
+    });   
   }
   else
     res.redirect('/');
